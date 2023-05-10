@@ -4,35 +4,66 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float movementSpeed = 5f;
 
-    #region JUMP
+    [SerializeField] private float climbingSpeed = 5f;
+    private bool canClimb;
+    private bool isClimbing;
+
     [SerializeField] private float jumpForce = 5f;
-
     [SerializeField] private float coyoteTime = 0.2f;
-    [SerializeField] private float coyoteTimeCounter;
-
     [SerializeField] private float jumpBufferTime = 0.2f;
-    [SerializeField] private float jumpBufferCounter;
-    #endregion
+    private float coyoteTimeCounter;
+    private float jumpBufferCounter;
 
     [SerializeField] private LayerMask groundLayer;
 
     private float horizontalInput;
+    private float verticalInput;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
+    private float originalGravityScale;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalGravityScale = rb.gravityScale;
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
 
+        Jump();
+        Climb();
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);
+
+        if(isClimbing)
+        {
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbingSpeed);
+        }
+        else
+        {
+            rb.gravityScale = originalGravityScale;
+        }
+    }
+
+    private bool isGrounded()
+    {
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
+    }
+
+    private void Jump()
+    {
         if (isGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -64,16 +95,30 @@ public class PlayerMovement : MonoBehaviour
 
             coyoteTimeCounter = 0f;
         }
-
     }
 
-    private void FixedUpdate()
+    private void Climb()
     {
-        rb.velocity = new Vector2(horizontalInput * speed, rb.velocity.y);
+        if(canClimb && Mathf.Abs(verticalInput) > 0f)
+        {
+            isClimbing = true;
+        }
     }
 
-    private bool isGrounded()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
+        if (collision.CompareTag("Ladder"))
+        {
+            canClimb = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            canClimb = false;
+            isClimbing = false;
+        }
     }
 }
