@@ -6,7 +6,7 @@ public class FollowingCamera : MonoBehaviour
 {
 
     private Vector3 offset = new Vector3(0f, 2f, -10f);
-    private float smoothTime = 0.25f;
+    private float smoothTime = 0.2f;
     private Vector3 velocity = Vector3.zero;
 
     [SerializeField] private Transform target;
