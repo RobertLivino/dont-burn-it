@@ -24,12 +24,5 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);   
-    }
-
-    
-
-    
-    
-
-    
+    }   
 }
