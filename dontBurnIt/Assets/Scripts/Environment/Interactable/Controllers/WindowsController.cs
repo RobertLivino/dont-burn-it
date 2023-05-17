@@ -1,9 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WindowsController : MonoBehaviour
 {
+    [SerializeField] private Image windowView;
+    [SerializeField] private bool isLookingOut;
+
+    [SerializeField] private GameObject player;
+    private PlayerMovement pMovement;
+
+    private void Start()
+    {
+        pMovement = player.GetComponent<PlayerMovement>();
+    }
+
+    public void InteractWithWindow()
+    {
+        if(!isLookingOut)
+        {
+            lookOutTheWindow();
+        }
+        else
+        {
+            GetOffTheWindow();
+        }
+    }
+
+    private void lookOutTheWindow()
+    {
+        isLookingOut = true;
+        windowView.gameObject.GetComponent<Image>().enabled = true;
+
+        pMovement.StopMoving();
+        pMovement.ToggleWalk();
+    }
+
+    private void GetOffTheWindow()
+    {
+        isLookingOut = false;
+        windowView.gameObject.GetComponent<Image>().enabled = false;
+       
+        pMovement.ToggleWalk();
+    }
+}
+
+/*
     public bool isPressed;
     public Animator animator;
     public Transform cameraDestination; // O destino para onde a câmera deve se mover
@@ -93,4 +136,4 @@ public class WindowsController : MonoBehaviour
             Debug.LogError("Original camera position is not set!");
         }
     }
-}
+    */
