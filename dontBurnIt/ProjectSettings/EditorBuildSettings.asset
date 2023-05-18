@@ -8,4 +8,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IntroductionScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ClosingScene.unity
+    guid: ad1a40feae6d45f409167785f19d48e9
+  - enabled: 1
+    path: Assets/Scenes/ConfigScene.unity
+    guid: 6c54401812c8fa342b9a93d52d814342
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: d2bde2671ce714e4ba3d67ae151180a2
+  - enabled: 1
+    path: Assets/Scenes/MenuScene.unity
+    guid: b02b12f41b6583a4f811c3386b04d801
+  - enabled: 1
+    path: Assets/Scenes/End1Scene.unity
+    guid: d34fe8588a566ff46b85ef54299ac560
+  - enabled: 1
+    path: Assets/Scenes/End2Scene.unity
+    guid: 170f9aa674d23154ab3c5ef8bcaca419
+  - enabled: 1
+    path: Assets/Scenes/HowToPlayScene.unity
+    guid: 71df740c6b3a35d4187e4124da165867
+  - enabled: 1
+    path: Assets/Scenes/FactoryScene.unity
+    guid: 73bd3a441ea47684294ee0eede3f4bd5
   m_configObjects: {}
