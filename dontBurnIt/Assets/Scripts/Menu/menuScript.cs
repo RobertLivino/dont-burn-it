@@ -5,15 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class menuScript : MonoBehaviour
 {
-    //public AudioClip CarlosTina;
+    [SerializeField] private AudioClip menuSong;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        SoundManager.Instance.PlayMusic(menuSong);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("escape"))
@@ -46,6 +44,12 @@ public class menuScript : MonoBehaviour
         SceneManager.LoadScene("CreditsScene");
     }
 
+    public void OnClickBackToMenu()
+    {
+        //AudioSource.PlayClipAtPoint(CarlosTina, transform.position);
+        SceneManager.LoadScene("MenuScene");
+    }
+
     public void OnClickExitGame()
     {
         //AudioSource.PlayClipAtPoint(CarlosTina, transform.position);
@@ -53,4 +57,5 @@ public class menuScript : MonoBehaviour
         Debug.Log("Saindo");
         //Application.Quit();
     }
+  
 }

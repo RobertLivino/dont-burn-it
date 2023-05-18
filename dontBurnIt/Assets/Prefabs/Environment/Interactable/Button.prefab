@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPressed: 0
   animator: {fileID: 0}
+  _clip: {fileID: 8300000, guid: ba62a64f25a51ec4dbdad8af3903e783, type: 3}
 --- !u!1001 &235045270268343574
 PrefabInstance:
   m_ObjectHideFlags: 0
