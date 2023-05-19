@@ -9,12 +9,16 @@ public class menuScript : MonoBehaviour
 
     private void Start()
     {
-        SoundManager.Instance.PlayMusic(menuSong);
+        if(menuSong != null)
+        {
+            SoundManager.Instance.PlayMusic(menuSong);
+        }
+        
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         } 
