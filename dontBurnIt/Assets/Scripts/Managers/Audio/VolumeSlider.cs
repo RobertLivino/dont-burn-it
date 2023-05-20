@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 public class VolumeSlider : MonoBehaviour
 {
-    [SerializeField] private Slider _slider;
+    [SerializeField] private Slider _musicSlider, _sfxSlider;
 
     private void Start()
     {
-        _slider.value = PlayerPrefs.GetFloat("VolumeValue");
+        _musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        _sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
 
-    public void ChangeVolume(float volume)
+    public void MusicVolume()
     {
-      SoundManager.Instance.ChangeMasterVolume(volume);
+        AudioManager.Instance.ChangeMusicVolume(_musicSlider.value);
     }
 
+    public void SFXVolume()
+    {
+        AudioManager.Instance.ChangeSFXVolume(_sfxSlider.value);
+    }
 }

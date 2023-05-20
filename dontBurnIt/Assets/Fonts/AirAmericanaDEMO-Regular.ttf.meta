@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 23555530e950e1d499f3c87737759e9e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Air Americana DEMO
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8001e414a4bec814b973ed760ddc9d4d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

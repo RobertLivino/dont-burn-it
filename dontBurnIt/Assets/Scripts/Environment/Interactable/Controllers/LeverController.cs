@@ -5,20 +5,18 @@ using UnityEngine;
 public class LeverController : MonoBehaviour
 {
     private bool isActive;
-    [SerializeField] private AudioClip activating;
-    [SerializeField] private AudioClip deactivating;
 
     public void SwitchState()
     {
         if (!isActive)
         {
             isActive = true;
-            SoundManager.Instance.PlaySound(activating);
+            AudioManager.Instance.PlaySFX("Lever_1");
             Debug.Log("Lever is now on");
         }
         else
         {
-            SoundManager.Instance.PlaySound(deactivating);
+            AudioManager.Instance.PlaySFX("Lever_2");
             isActive = false;
             Debug.Log("Lever is now off");
         }

@@ -7,7 +7,10 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool isPaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject background;
+
 
     void Update()
     {
@@ -26,25 +29,29 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        pauseMenuUI.SetActive(true);
+        background.SetActive(true);
+        pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
+        background.SetActive(false);
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
     public void SettingsMenu()
     {
-        
+        settingsMenu.SetActive(true);
+        pauseMenu.SetActive(false);
     }
 
     public void BackToMainMenu()
     {
-        
+        SceneManager.LoadScene("MenuScene");
     }
 }
