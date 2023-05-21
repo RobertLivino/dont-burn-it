@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     void Update()
     {
         if(isInRange)
-        {
+        { 
             if(Input.GetKeyDown(interactKey))
             {
                 interactAction.Invoke();

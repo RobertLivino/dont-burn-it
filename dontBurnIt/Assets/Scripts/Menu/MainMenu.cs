@@ -7,8 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     
     public void PlayGame()
-    {
-        SceneManager.LoadScene("FactoryScene");
+    { 
+        SceneManager.LoadScene("Main Scene");
     }
 
     public void SettingsMenu()

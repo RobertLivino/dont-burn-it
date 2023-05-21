@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject background;
 
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -52,6 +51,8 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        Time.timeScale = 1f;
+        isPaused = false;
         SceneManager.LoadScene("MenuScene");
     }
 }

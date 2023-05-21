@@ -5,24 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/IntroductionScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Menus/MenuScene.unity
     guid: b02b12f41b6583a4f811c3386b04d801
   - enabled: 1
-    path: Assets/Scenes/Gameplay/FactoryScene.unity
-    guid: 73bd3a441ea47684294ee0eede3f4bd5
-  - enabled: 1
-    path: Assets/Scenes/ClosingScene.unity
-    guid: ad1a40feae6d45f409167785f19d48e9
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/Menus/CreditsScene.unity
-    guid: d2bde2671ce714e4ba3d67ae151180a2
+    path: Assets/Scenes/Gameplay/Main Scene.unity
+    guid: 9d8777933d974a84ab83a1ab4257e631
   - enabled: 1
     path: Assets/Scenes/End1Scene.unity
     guid: d34fe8588a566ff46b85ef54299ac560
@@ -30,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/End2Scene.unity
     guid: 170f9aa674d23154ab3c5ef8bcaca419
   - enabled: 1
-    path: Assets/Scenes/HowToPlayScene.unity
-    guid: 71df740c6b3a35d4187e4124da165867
+    path: Assets/Scenes/ClosingScene.unity
+    guid: ad1a40feae6d45f409167785f19d48e9
+  - enabled: 1
+    path: Assets/Scenes/Menus/CreditsScene.unity
+    guid: d2bde2671ce714e4ba3d67ae151180a2
   m_configObjects: {}
