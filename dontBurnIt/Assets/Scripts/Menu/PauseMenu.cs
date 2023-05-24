@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public LevelLoaderScript levelLoader;
+    public string sceneName;
+
     public static bool isPaused = false;
 
     [SerializeField] private GameObject pauseMenu;
@@ -53,6 +56,6 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         isPaused = false;
-        SceneManager.LoadScene("MenuScene");
+        levelLoader.Transition(sceneName);
     }
 }

@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Transition
+    uniqueID: 2225456821
+    locked: 0
