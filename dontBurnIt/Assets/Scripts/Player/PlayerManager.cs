@@ -1,24 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public static bool cameraShouldFollow;
+    public static PlayerManager Instance;
+    private Rigidbody2D rb;
+    private Animator animator;
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Awake()
     {
-        if (collision.gameObject.CompareTag("CameraZone"))
+        if(Instance == null)
         {
-            cameraShouldFollow = false;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void Start()
     {
-        if (collision.gameObject.CompareTag("CameraZone"))
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
+
+    public bool canWalk = true;
+    public bool canJump = true;
+    public bool canInteract = true;
+
+    public void ToggleWalk()
+    {
+        if (!canWalk)
         {
-            cameraShouldFollow = true;
+            canWalk = true;
         }
+        else
+        {
+            canWalk = false;
+        }
+    }
+
+    public void StopMoving()
+    {
+        rb.velocity *= 0;
+        animator.SetFloat("isWalking", 0);
     }
 }

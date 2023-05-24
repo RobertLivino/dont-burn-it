@@ -13,9 +13,9 @@ public class LevelLoaderScript : MonoBehaviour
 
     IEnumerator LoadScenes(string sceneName){
         transitionAnim.SetTrigger("Start");
-
-        yield return new WaitForSeconds(1f);
-
         SceneManager.LoadScene(sceneName);
+        yield return new WaitForSeconds(0.1f);
+
+        
     }
 }

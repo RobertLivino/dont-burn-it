@@ -33,16 +33,16 @@ public class WindowsController : MonoBehaviour
         isLookingOut = true;
         windowView.gameObject.GetComponent<Image>().enabled = true;
 
-        pMovement.StopMoving();
-        pMovement.ToggleWalk();
+        PlayerManager.Instance.StopMoving();
+        PlayerManager.Instance.ToggleWalk();
     }
 
     private void GetOffTheWindow()
     {
         isLookingOut = false;
         windowView.gameObject.GetComponent<Image>().enabled = false;
-       
-        pMovement.ToggleWalk();
+
+        PlayerManager.Instance.ToggleWalk();
     }
 }
 

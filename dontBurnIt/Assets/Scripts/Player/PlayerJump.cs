@@ -24,7 +24,11 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        Jump();
+        if(PlayerManager.Instance.canJump)
+        {
+            Jump();
+        }
+        
     }
 
     private void Jump()

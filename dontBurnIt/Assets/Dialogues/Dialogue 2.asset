@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d763fb6a528ccf44f84f0d5b14aeacb3, type: 3}
+  m_Name: Dialogue 2
+  m_EditorClassIdentifier: 
+  npcStarts: 0
+  npcSentences:
+  - Shiiiiu! Quer que eles peguem a gente garota?
+  - "Shiiiiu t\xE1 tudo bem, n\xE3o precisa chorar, s\xF3 fale baixo, okay? Eles
+    \rest\xE3o nos observando para ver se estamos fazendo nossas atividades, eu acabei
+    de sair da minha... Voc\xEA deve \r\nter uma, qual a sua?\r"
+  - "Presta bastante aten\xE7\xE3o, voc\xEA deve fazer o que te designaram, se n\xE3o
+    eles \rsomem com voc\xEA e fazem deus sabe o que \r\ncom voc\xEA. Eles pegaram
+    meu marido... \r\nEu n\xE3o sei o que fizeram com ele, se o \r\nlevaram para
+    outro lugar ou algo \r\npior... Eu nunca fui na f\xE1brica mas se \r\nele estiver
+    por l\xE1, diga que estou bem \r\npor favor!\r"
+  - "Ele \xE9 alto, cabelo grisalho, usa alian\xE7a igual a minha, a numera\xE7\xE3o
+    dele \xE9 048. Se o vir por favor diga \rque estou bem e veja como ele est\xE1,
+    \rpor favor...\r"
+  - "N\xF3s n\xE3o podemos dizer nossos nomes, \raqui n\xE3o temos nomes...Se eles
+    ouvirem \ra gente dizendo eles, seremos levados. \r\nNunca fale seu nome para
+    ningu\xE9m.\r"
+  - "Agrade\xE7a por isso. Agora v\xE1!"
+  playerSentences:
+  - "Oi...Eu n\xE3o sei o que est\xE1 acontecendo, aonde n\xF3s...\r"
+  - "Desculpa...Eu n\xE3o sei o que fazer, n\xE3o \rsei o que est\xE1 acontecendo,
+    n\xE3o sei \rquem eu sou..."
+  - "Acho que a minha \xE9 na f\xE1brica...Foi o \rque um soldado me falou."
+  - "Tudo bem... Farei isso, mas como ele \r\xE9?"
+  - "Certo...Mas voc\xEA n\xE3o vai me dizer seu \rnome pelo menos?"

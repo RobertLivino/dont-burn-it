@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(canWalk)
+        if(PlayerManager.Instance.canWalk)
         {
             rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);
 
@@ -43,31 +43,19 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("isWalking", Mathf.Abs(horizontalInput));
 
         }   
-    }  
-    
-    public void ToggleWalk()
-    {
-        if (!canWalk)
-        {
-            canWalk = true;
-        }
-        else
-        {
-            canWalk = false;
-        }
     }
 
     public void FlipCharacter()
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
+        if (facingRight)
+        {
+            transform.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            transform.GetComponent<SpriteRenderer>().flipX = false;
+        }
 
         facingRight = !facingRight;
-    }
-
-    public void StopMoving()
-    {
-        rb.velocity *= 0;
     }
 }
