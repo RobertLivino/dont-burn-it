@@ -12,28 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d763fb6a528ccf44f84f0d5b14aeacb3, type: 3}
   m_Name: Dialogue 2
   m_EditorClassIdentifier: 
-  npcStarts: 0
-  npcSentences:
-  - Shiiiiu! Quer que eles peguem a gente garota?
-  - "Shiiiiu t\xE1 tudo bem, n\xE3o precisa chorar, s\xF3 fale baixo, okay? Eles
-    \rest\xE3o nos observando para ver se estamos fazendo nossas atividades, eu acabei
-    de sair da minha... Voc\xEA deve \r\nter uma, qual a sua?\r"
-  - "Presta bastante aten\xE7\xE3o, voc\xEA deve fazer o que te designaram, se n\xE3o
-    eles \rsomem com voc\xEA e fazem deus sabe o que \r\ncom voc\xEA. Eles pegaram
-    meu marido... \r\nEu n\xE3o sei o que fizeram com ele, se o \r\nlevaram para
-    outro lugar ou algo \r\npior... Eu nunca fui na f\xE1brica mas se \r\nele estiver
-    por l\xE1, diga que estou bem \r\npor favor!\r"
-  - "Ele \xE9 alto, cabelo grisalho, usa alian\xE7a igual a minha, a numera\xE7\xE3o
-    dele \xE9 048. Se o vir por favor diga \rque estou bem e veja como ele est\xE1,
-    \rpor favor...\r"
-  - "N\xF3s n\xE3o podemos dizer nossos nomes, \raqui n\xE3o temos nomes...Se eles
-    ouvirem \ra gente dizendo eles, seremos levados. \r\nNunca fale seu nome para
-    ningu\xE9m.\r"
-  - "Agrade\xE7a por isso. Agora v\xE1!"
-  playerSentences:
-  - "Oi...Eu n\xE3o sei o que est\xE1 acontecendo, aonde n\xF3s...\r"
-  - "Desculpa...Eu n\xE3o sei o que fazer, n\xE3o \rsei o que est\xE1 acontecendo,
-    n\xE3o sei \rquem eu sou..."
-  - "Acho que a minha \xE9 na f\xE1brica...Foi o \rque um soldado me falou."
-  - "Tudo bem... Farei isso, mas como ele \r\xE9?"
-  - "Certo...Mas voc\xEA n\xE3o vai me dizer seu \rnome pelo menos?"
+  sentences:
+  - speaker: 0
+    sentence: "Oi...Eu n\xE3o sei o que est\xE1 acontecendo, aonde n\xF3s..."
+  - speaker: 1
+    sentence: Shiiiiu! Quer que eles peguem a gente garota?
+  - speaker: 0
+    sentence: "Desculpa...Eu n\xE3o sei o que fazer, n\xE3o sei o que est\xE1 acontecendo,
+      n\xE3o sei quem eu sou..."
+  - speaker: 1
+    sentence: "Shiiiiu t\xE1 tudo bem, n\xE3o precisa chorar, s\xF3 fale baixo, okay?  "
+  - speaker: 1
+    sentence: "Eles est\xE3o nos observando para ver se estamos fazendo nossas atividades,
+      eu acabei de sair da minha..."
+  - speaker: 1
+    sentence: "Voc\xEA deve ter uma, qual a sua?"
+  - speaker: 0
+    sentence: "Acho que a minha \xE9 na f\xE1brica...Foi o que um soldado me falou."
+  - speaker: 1
+    sentence: "Presta bastante aten\xE7\xE3o, voc\xEA deve fazer o que te designaram,
+      se n\xE3o eles somem com voc\xEA e fazem deus sabe o que com voc\xEA."
+  - speaker: 1
+    sentence: "Eles pegaram meu marido... Eu n\xE3o sei o que fizeram com ele, se
+      o levaram para outro lugar ou algo pior..."
+  - speaker: 1
+    sentence: "Eu nunca fui na f\xE1brica mas se ele estiver por l\xE1, diga que
+      estou bem por favor!"
+  - speaker: 0
+    sentence: "Tudo bem... Farei isso, mas como ele \xE9?"
+  - speaker: 1
+    sentence: "Ele \xE9 alto, cabelo grisalho, usa alian\xE7a igual a minha, a numera\xE7\xE3o
+      dele \xE9 048."
+  - speaker: 1
+    sentence: "Se o vir por favor diga que estou bem e veja como ele est\xE1, por
+      favor..."
+  - speaker: 0
+    sentence: "Certo...Mas voc\xEA n\xE3o vai me dizer seu nome pelo menos?"
+  - speaker: 1
+    sentence: "N\xF3s n\xE3o podemos dizer nossos nomes, aqui n\xE3o temos nomes..."
+  - speaker: 0
+    sentence: "N\xE3o \xE9 como se eu soubesse o meu..."
+  - speaker: 1
+    sentence: "Agrade\xE7a por isso. Agora v\xE1!"

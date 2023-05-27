@@ -12,6 +12,8 @@ public class TeleporterController : MonoBehaviour
 
     public void Teleport()
     {
+        PlayerManager.Instance.changeMainCameraBlendTime(0);
+
         nextRoom.SetActive(true);
         thisRoom.SetActive(false);
 

@@ -1,145 +1,172 @@
+using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
-
     [SerializeField] private Dialogue dialogue;
-    [SerializeField] private bool dialogueStarted;
-    [SerializeField] private float typingSpeed = 0.02f;
 
+    [SerializeField] private GameObject player;
     [SerializeField] private bool playerInRange;
+    private TextMeshPro playerTextArea;
 
-    [SerializeField] private TextMeshPro playerTextArea;
-    [SerializeField] private TextMeshPro npcTextArea;
+    [SerializeField] private GameObject npc;
+    private TextMeshPro npcTextArea;
 
+    bool dialogueEnded;
+    bool isTyping;
 
-    string[] playerSentences;
-    int playerIndex = 0;
-    bool playerIsTalking;
-
-    string[] npcSentences;
-    int npcIndex = 0;
+    int index = 0;
+    float typingSpeed = 0.02f;
 
     private void Start()
-    { 
-        playerInRange = false;
-        playerSentences = dialogue.playerSentences;
-        npcSentences = dialogue.npcSentences;
+    {
+        playerTextArea = player.gameObject.GetComponentInChildren<TextMeshPro>();
+        npcTextArea = npc.gameObject.GetComponentInChildren<TextMeshPro>();
     }
 
     private void Update()
     {
-        if(playerInRange)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(PlayerManager.Instance.interactKey))
+        { 
+            if(playerInRange)
             {
-                if (!dialogueStarted)
+                if (index < dialogue.sentences.Length)
                 {
-                    StartDialogue();
-                    dialogueStarted = true;
+                    ClearTextAreas();
+                    DisplaySentence(GetCurrentSpeakerTextArea(), GetCurrentSentence());
                 }
                 else
                 {
-                    if (playerIsTalking)
-                    {
-                        DisplayNpcSentence();
-                    }
-                    else
-                    {
-                        DisplayPlayerSentence();
-                    }
+                    Debug.Log("There aren't more sentences");
+                    EndDialogue();
                 }
-
-            }
-        }
-        
+                    
+            }   
+        }    
     }
 
-    public void StartDialogue()
+    private void StartDialogue()
     {
-        PlayerManager.Instance.StopMoving();
+        Debug.Log("Dialogue started with: " + npc.name);
 
+        PlayerManager.Instance.StopMoving();
         PlayerManager.Instance.canWalk = false;
         PlayerManager.Instance.canJump = false;
-        PlayerManager.Instance.canInteract = false;
 
-        if (!dialogue.npcStarts)
-        {
-            DisplayPlayerSentence();
-        }
-        else
-        {
-            DisplayNpcSentence();
-        }
+        PlayerManager.Instance.SetDialogueCanvas(true);
+        PlayerManager.Instance.SetDialogueCamera(true);
+
+        DisplaySentence(GetCurrentSpeakerTextArea(), GetCurrentSentence());
+       
     }
 
-    public void EndDialogue()
+    private void EndDialogue()
     {
+        Debug.Log("Dialogue with: " + npc.name + " has ended"); ;
+        dialogueEnded = true;
+        ClearTextAreas();
 
         PlayerManager.Instance.canWalk = true;
         PlayerManager.Instance.canJump = true;
-        PlayerManager.Instance.canInteract = true;
 
+        PlayerManager.Instance.SetDialogueCanvas(false);
+        PlayerManager.Instance.SetDialogueCamera(false);
+    }
+
+    private TextMeshPro GetCurrentSpeakerTextArea()
+    {
+        if(dialogue.sentences[index].speaker.ToString() == "Player")
+        {
+            return playerTextArea;
+        } 
+        else
+        {
+            return npcTextArea;
+        }   
+    }
+
+    private string GetCurrentSentence()
+    {
+        return dialogue.sentences[index].sentence;
+    }
+
+    public void DisplaySentence(TextMeshPro textArea, string sentence)
+    {
+        if (!isTyping)
+        {
+            StartCoroutine(Type(textArea, sentence));
+        }
+        else
+        {
+            StopTyping();
+            ClearTextAreas();
+            textArea.text = sentence;
+            index++;
+        }
+    }
+
+    public void ClearTextAreas()
+    {
         playerTextArea.text = "";
         npcTextArea.text = "";
     }
 
-    public void DisplayPlayerSentence()
-    {
-        if(playerIndex < playerSentences.Length)
-        {
-            playerIsTalking = true;
-            StartCoroutine(Type(playerTextArea, playerSentences[playerIndex]));
-            playerIndex++;
-            
-            npcTextArea.text = "";
-        }
-        else
-        {
-            EndDialogue();
-        }
-
-        
-    }
-
-    public void DisplayNpcSentence()
-    {
-        if (playerIndex < npcSentences.Length)
-        {
-            StartCoroutine(Type(npcTextArea, npcSentences[npcIndex]));
-            npcIndex++;
-            playerIsTalking = false;
-            playerTextArea.text = "";
-        }
-        else
-        {
-            EndDialogue();
-        }
-        
-    }
-
     IEnumerator Type(TextMeshPro textArea, string text)
     {
-        foreach(char letter in text)
-        {
-            textArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
+        textArea.text = "";
+
+        isTyping = true;
+        Debug.Log("Typing");
+
+        int count = 0;
+        foreach (char letter in text)
+            {
+                count++;
+                if(count % 5 == 0)
+                {
+                    AudioManager.Instance.PlaySFX("talking");
+                    count = 0;
+                }
+                
+                textArea.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+        isTyping = false;
+        Debug.Log("Finished Typing");
+
+        index++;     
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void StopTyping()
     {
-        playerInRange = true;  
+        StopAllCoroutines();
+        isTyping = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (!dialogueEnded)
+            {
+                playerInRange = true;
+                StartDialogue();
+            }
+            
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        playerInRange = false;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
     }
 
-
 }
+
