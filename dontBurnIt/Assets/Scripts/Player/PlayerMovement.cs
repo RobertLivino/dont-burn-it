@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");   
+        horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
     private void FixedUpdate()
@@ -40,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
                 FlipCharacter();
             }
 
-            animator.SetFloat("isWalking", Mathf.Abs(horizontalInput));
-
+            animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
         }   
     }
 

@@ -32,6 +32,7 @@ public class PlayerClimb : MonoBehaviour
     {
         if (isClimbing)
         {
+            gameObject.GetComponent<Animator>().SetBool("isClimbing", true);
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbingSpeed);
         }

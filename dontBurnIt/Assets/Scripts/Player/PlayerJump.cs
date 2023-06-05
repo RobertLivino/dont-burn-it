@@ -28,7 +28,11 @@ public class PlayerJump : MonoBehaviour
         {
             Jump();
         }
-        
+
+        if (isGrounded())
+        {
+            GetComponent<Animator>().SetBool("isJumping", false);
+        }
     }
 
     private void Jump()
@@ -56,6 +60,9 @@ public class PlayerJump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
             jumpBufferCounter = 0f;
+
+            GetComponent<Animator>().SetBool("isJumping", true);
+
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -63,12 +70,18 @@ public class PlayerJump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCounter = 0f;
+
+            GetComponent<Animator>().SetBool("isFalling", true);
         }
     }
+
+
 
     private bool isGrounded()
     {
         return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
     }
+
+
 
 }

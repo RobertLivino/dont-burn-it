@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
     public void StopMoving()
     {
         rb.velocity *= 0;
-        animator.SetFloat("isWalking", 0);
+        animator.SetFloat("Speed", 0);
     }
 
     public void SetDialogueCanvas(bool state)

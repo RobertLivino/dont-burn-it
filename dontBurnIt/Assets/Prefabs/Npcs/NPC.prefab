@@ -109,7 +109,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4282723071
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -244,6 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 438c9be6b434d7f40b70daa04103ff30, type: 2}
+  player: {fileID: 0}
+  playerInRange: 0
+  npc: {fileID: 0}
 --- !u!1 &3574356478334444167
 GameObject:
   m_ObjectHideFlags: 0
