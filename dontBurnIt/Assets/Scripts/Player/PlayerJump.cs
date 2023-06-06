@@ -14,6 +14,7 @@ public class PlayerJump : MonoBehaviour
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider;
+    public Animator animator;
 
 
     void Start()
@@ -27,16 +28,23 @@ public class PlayerJump : MonoBehaviour
         if(PlayerManager.Instance.canJump)
         {
             Jump();
+            animator.SetBool("isJumping", true);
         }
 
         if (isGrounded())
         {
-            GetComponent<Animator>().SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isJumping", false);
         }
     }
 
     private void Jump()
     {
+
+        if (!isGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
         if (isGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -70,16 +78,14 @@ public class PlayerJump : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCounter = 0f;
-
-            GetComponent<Animator>().SetBool("isFalling", true);
+            animator.SetBool("isJumping", false);
         }
     }
 
-
-
     private bool isGrounded()
     {
-        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
+        bool grounded = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.02f, groundLayer);
+        return grounded;
     }
 
 
