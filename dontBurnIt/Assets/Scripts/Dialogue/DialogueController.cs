@@ -14,7 +14,8 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private GameObject npc;
     private TextMeshPro npcTextArea;
 
-    bool dialogueEnded;
+    public bool dialogueStarted;
+    public bool dialogueEnded;
     bool isTyping;
 
     int index = 0;
@@ -49,6 +50,8 @@ public class DialogueController : MonoBehaviour
 
     private void StartDialogue()
     {
+        dialogueStarted = true;
+
         Debug.Log("Dialogue started with: " + npc.name);
 
         PlayerManager.Instance.StopMoving();
@@ -64,8 +67,10 @@ public class DialogueController : MonoBehaviour
 
     private void EndDialogue()
     {
-        Debug.Log("Dialogue with: " + npc.name + " has ended"); ;
         dialogueEnded = true;
+
+        Debug.Log("Dialogue with: " + npc.name + " has ended"); ;
+        
         ClearTextAreas();
 
         PlayerManager.Instance.canWalk = true;

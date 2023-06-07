@@ -6,6 +6,7 @@ public class LeverController : MonoBehaviour
 {
     private bool isActive;
 
+
     public void SwitchState()
     {
         if (!isActive)

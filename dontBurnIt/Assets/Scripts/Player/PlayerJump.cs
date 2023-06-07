@@ -110,6 +110,12 @@ public class PlayerJump : MonoBehaviour
         return grounded;
     }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            animator.SetBool("isJumping", false);
+        }
+    }
 
 }
