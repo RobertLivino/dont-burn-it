@@ -9,11 +9,13 @@ public class PlayerClimb : MonoBehaviour
     [SerializeField] private float climbingSpeed = 5f;
     private bool canClimb;
     private bool isClimbing;
+    private bool climbAnimation;
 
     private float verticalInput;
 
     private Rigidbody2D rb;
     private float originalGravityScale;
+    public Animator animator;
 
     void Start()
     { 
@@ -26,13 +28,13 @@ public class PlayerClimb : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         Climb();
+        animator.SetBool("isClimbing", isClimbing);
     }
 
     private void FixedUpdate()
     {
         if (isClimbing)
         {
-            //gameObject.GetComponent<Animator>().SetBool("isClimbing", true);
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, verticalInput * climbingSpeed);
         }
@@ -66,5 +68,4 @@ public class PlayerClimb : MonoBehaviour
             isClimbing = false;
         }
     }
-
 }
