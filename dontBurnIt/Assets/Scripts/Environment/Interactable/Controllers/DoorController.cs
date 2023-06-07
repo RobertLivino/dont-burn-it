@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+    Animator animator;
     bool isClosed;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         isClosed = true;
     }
 
@@ -18,20 +20,46 @@ public class DoorController : MonoBehaviour
 
     public IEnumerator ActivateDoor()
     {
-        ToggleDoor();
+        if(isClosed)
+        {
+            StartCoroutine(ToggleDoor());
 
-        yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(5);
 
-        ToggleDoor();
+            StartCoroutine(ToggleDoor());
+        }
+
+       
     }
 
-    void ToggleDoor()
+    public IEnumerator ToggleDoor()
     {
-        isClosed = !isClosed;
+        if(isClosed)
+        {
+            isClosed = !isClosed;
 
-        Debug.Log("Door is open? : " + isClosed);
+            animator.SetBool("isOpening", true);
 
-        gameObject.GetComponent<BoxCollider2D>().enabled = isClosed;
-        gameObject.GetComponent<SpriteRenderer>().enabled = isClosed;
+            yield return new WaitForSeconds(.8f);
+
+            animator.SetBool("isOpening", false);
+            animator.SetBool("Closed", false);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+            yield return new WaitForSeconds(5);
+
+            animator.SetBool("isClosing", true);
+
+            yield return new WaitForSeconds(.8f);
+
+            animator.SetBool("isClosing", false);
+            animator.SetBool("Closed", true);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+            isClosed = !isClosed;
+        } 
+
+
     }
 }
+
