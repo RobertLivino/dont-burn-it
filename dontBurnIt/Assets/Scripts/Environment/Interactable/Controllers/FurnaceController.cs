@@ -27,26 +27,17 @@ public class FurnaceController : MonoBehaviour
     {
         if (animator.GetBool("isActive"))
         {
-
+            StartCoroutine("teste");
         }
 
         Destroy(collision.gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (isActive)
-            {
-                gameObject.GetComponent<Animator>().SetTrigger("Burning");
-            }
 
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
+    IEnumerator teste()
     {
-        gameObject.GetComponent<Animator>().ResetTrigger("Burning");
+        animator.SetTrigger("Burning");
+        yield return new WaitForSeconds(10);
+        animator.ResetTrigger("Burning");
     }
 }
