@@ -13,9 +13,9 @@ public class MainMenu : MonoBehaviour
         levelLoader.Transition(sceneName);
     }
 
-    public void SettingsMenu()
+    public void CreditsScene()
     {
-
+        SceneManager.LoadScene("Credits");        
     }
 
     public void QuitGame()

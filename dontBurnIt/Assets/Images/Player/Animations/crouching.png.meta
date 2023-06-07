@@ -3,7 +3,7 @@ guid: 9726d412e1d9e4041b81cc67b68e8f66
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -63,7 +63,6 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -283,13 +282,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      crouching_0: -1389992357
       crouching_1: -1900322552
       crouching_2: 1635001164
       crouching_3: 1733189765
-      crouching_4: -1547953507
+      crouching_0: -1389992357
       crouching_5: -1094337655
       crouching_6: 1831031327
+      crouching_4: -1547953507
       crouching_7: -1237170626
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -10,14 +10,21 @@ public class TeleporterController : MonoBehaviour
     [SerializeField] private GameObject thisRoom;
     [SerializeField] private GameObject nextRoom;
 
+    [SerializeField] public bool isLocked;
+
     public void Teleport()
     {
-        PlayerManager.Instance.changeMainCameraBlendTime(0);
 
-        nextRoom.SetActive(true);
-        thisRoom.SetActive(false);
+        if(!isLocked)
+        {
+            PlayerManager.Instance.changeMainCameraBlendTime(0);
 
-        player.transform.position = destination.position;
+            nextRoom.SetActive(true);
+            thisRoom.SetActive(false);
+
+            player.transform.position = destination.position;
+        }
+        
     }
 
 

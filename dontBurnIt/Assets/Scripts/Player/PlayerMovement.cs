@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] public float movementSpeed = 5f;
 
     private float horizontalInput;
     private bool canWalk = true;

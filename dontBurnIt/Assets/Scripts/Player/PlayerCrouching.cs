@@ -17,8 +17,15 @@ public class PlayerCrouching : MonoBehaviour
 
     private bool isCrouching;
 
+    Animator animator;
+    [SerializeField] GameObject player;
+    PlayerMovement pMovementScript;
+
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        pMovementScript = player.GetComponent<PlayerMovement>();
+
         isCrouching = false;
 
         playerCollider = gameObject.GetComponent<BoxCollider2D>();
@@ -27,14 +34,16 @@ public class PlayerCrouching : MonoBehaviour
         crouchingHeight = playerCollider.size.y / 2;
 
         originalYOffset = playerCollider.offset;
-        crouchingYOffset = new Vector2(0, -.22f);
-
-}
+        crouchingYOffset = new Vector2(0, -.4f);
+    }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.S))
         {
+            animator.SetBool("isCrouching", true);
+            pMovementScript.movementSpeed = pMovementScript.movementSpeed / 2;
+            player.gameObject.transform.localScale = new Vector3(1.5f, 1.1f, 1);
             isCrouching = true;
             playerCollider.size = new Vector2(playerCollider.size.x, crouchingHeight);
             playerCollider.offset = crouchingYOffset;
@@ -42,9 +51,12 @@ public class PlayerCrouching : MonoBehaviour
 
         if(Input.GetKeyUp(KeyCode.S))
         {
+            animator.SetBool("isCrouching", false);
+            player.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            pMovementScript.movementSpeed = pMovementScript.movementSpeed * 2;
             isCrouching = false;
             playerCollider.size = new Vector2(playerCollider.size.x, originalHeight);
-            playerCollider.offset = originalOffset;
+            playerCollider.offset = originalYOffset;
         }
     }
 }

@@ -31,7 +31,11 @@ public class OneWayPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isInRange = true;
+
+            
         }
+
+
         
     }
 
@@ -40,6 +44,8 @@ public class OneWayPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isInRange = false;
+
+            
         }
     }
 
@@ -47,6 +53,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")){
             isColliding = true;
+            collision.gameObject.GetComponent<PlayerCrouching>().enabled = false;
         } 
     }
 
@@ -54,6 +61,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player")){
             isColliding = false;
+            collision.gameObject.GetComponent<PlayerCrouching>().enabled = true;
         } 
     }
 

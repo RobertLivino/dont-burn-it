@@ -4,40 +4,30 @@ using UnityEngine;
 
 public class FurnaceController : MonoBehaviour
 {
-    bool isActive;
+    public bool isActive;
+    public bool isBurning;
 
-    private Animator animator;
+    public Animator animator;
 
     private void Start()
     {
         isActive = false;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void ToggleFurnace()
     {
-        isActive = !isActive;
-        Debug.Log("Furnace is now: " + isActive);
-
-        animator.SetBool("isActive", isActive);
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (animator.GetBool("isActive"))
+        if(!isBurning)
         {
-            StartCoroutine("teste");
+            isActive = !isActive;
+            Debug.Log("Furnace is now: " + isActive);
+
+            animator.SetBool("isActive", isActive);
         }
+        
 
-        Destroy(collision.gameObject);
     }
 
+    
 
-    IEnumerator teste()
-    {
-        animator.SetTrigger("Burning");
-        yield return new WaitForSeconds(10);
-        animator.ResetTrigger("Burning");
-    }
 }
