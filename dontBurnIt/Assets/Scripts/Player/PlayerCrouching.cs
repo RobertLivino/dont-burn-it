@@ -26,7 +26,10 @@ public class PlayerCrouching : MonoBehaviour
         originalHeight = playerCollider.size.y;
         crouchingHeight = playerCollider.size.y / 2;
 
-    }
+        originalYOffset = playerCollider.offset;
+        crouchingYOffset = new Vector2(0, -.22f);
+
+}
 
     private void Update()
     {
@@ -34,13 +37,14 @@ public class PlayerCrouching : MonoBehaviour
         {
             isCrouching = true;
             playerCollider.size = new Vector2(playerCollider.size.x, crouchingHeight);
+            playerCollider.offset = crouchingYOffset;
         }
 
         if(Input.GetKeyUp(KeyCode.S))
         {
             isCrouching = false;
             playerCollider.size = new Vector2(playerCollider.size.x, originalHeight);
-            playerCollider.offset = crouchingOffset;
+            playerCollider.offset = originalOffset;
         }
     }
 }
